@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import React,{useState} from 'react';
 
 export const getStaticProps = async () => {
   const res = await axios('https://jsonplaceholder.typicode.com/users');
@@ -16,8 +17,11 @@ const Ninjas = ({ ninjas }) => {
 
   const router = useRouter();
 
+  const [ts , setts] = useState(false);
+
   const handleClick =()=>{
     console.log('clicked');
+    setts(!ts);
   }
 
   return (
