@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 
 export const getStaticProps = async () => {
-  const res = await axios('https://jsonplaceholder.typicode.com/users');
+  const res = await axios('http://192.168.11.131:8000/en/api/logo/');
   const data = res.data;
 
   return {
@@ -28,13 +28,13 @@ const Ninjas = ({ ninjas }) => {
     <div>
       <h1>list of users</h1>
       <button onClick={() => {handleClick()}}> click me </button>
-      {ninjas.map(ninja => (
+      {ninjas && ninjas.map(ninja => (
 
        
         
         <Link href={'/user/' + ninja.id} key={ninja.id}>
           
-            <h3>{ninja.id} - { ninja.name }</h3>
+          <img src={ninja.image} key={ninja.id} style={{width:'150px',height:'150px',borderRadius:'4px'}}/>
           
         </Link>
       ))}
