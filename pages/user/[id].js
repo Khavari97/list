@@ -2,24 +2,24 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-export const getStaticPaths = async () => {
-  const res = await fetch('https://retoolapi.dev/b3TpSs/contacts/');
-  const data = await res.json();
+// export const getStaticProps = async () => {
+//   const res = await fetch('https://retoolapi.dev/b3TpSs/contacts/');
+//   const data = await res.json();
 
-  // map data to an array of path objects with params (id)
-  const paths = data.map(ninja => {
-    return {
-      params: { id: ninja.id.toString() }
-    }
-  })
+//   // map data to an array of path objects with params (id)
+//   const paths = data.map(ninja => {
+//     return {
+//       params: { id: ninja.id.toString() }
+//     }
+//   })
 
-  return {
-    paths,
-    fallback: false
-  }
-}
+//   return {
+//     paths,
+//     fallback: false
+//   }
+// }
 
-export const getStaticProps = async (context) => {
+export const getServerSideProps = async (context) => {
   const id = context.params.id;
   const res = await axios('https://retoolapi.dev/b3TpSs/contacts/' + id);
   const data = res.data;
