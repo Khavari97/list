@@ -5,42 +5,35 @@ import React, { useState, useEffect } from 'react';
 
 const P1 = () => {
 
-    const [data, setData] = useState([]);
-    const router = useRouter();
-    console.log('test',router.query);
+    
+    const[phone , setPhone] = useState('');
+    const [fullname , setFullname] = useState('');
 
-    const getData = async () => {
-        await axios.get('https://jsonplaceholder.typicode.com/posts/').then((res) => {
-            setData(res.data);
-            console.log(data);
+    const sendData = async (event) => {
+        event.preventDefault();
+        const user ={phone,fullname};
+        try{
+            await axios.post('https://retoolapi.dev/b3TpSs/contacts',JSON.stringify(user)).then((res) => {
+            console.log(res);
+            console.log(user);
+            
         });
 
-    }
-
-    useEffect(() => {
-        getData();
-    }, []);
-
-    const handleClick =(ids)=>{
-
-        if(data.findIndex((i)=> i.id === ids.id)){
-            if(window.type !== "undefined"){
-                window.sessionStorage.setItem('postid',ids);
-            }
+        } catch(e){
+            console.log(e);
         }
-
     }
 
+    
     return (
         <div>
 
-            {data.map((d,index)=>(
-             
-                <Link href={`/employe/${d.id}/` + d.title} key={d.id}>
-                <p onClick={()=>handleClick(d.id)}> {d.title}</p>
-                </Link>
-              
-            ))}
+            <input value={phone} onChange={e => setPhone(e.target.value)} placeholder='phone'/>
+            <input value={fullname} onChange={e => setFullname(e.target.value)} placeholder='fullname'/>
+
+            <button onClick={sendData}>click me</button>
+
+           
 
 
         </div>

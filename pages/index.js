@@ -11,6 +11,7 @@ const App =()=>{
                 <Link href={"/comments"}> <h3><li> users with comments (csr & sg) </li></h3></Link>
                 <Link href={"/user"}> <h3><li> test </li></h3></Link>
                 <Link href={"/employe"}> <h3><li> employe </li></h3></Link>
+                <Link href={"/serverside"}> <h3><li> serverside test </li></h3></Link>
                 
             </ul>
         </div>

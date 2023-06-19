@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 export const getStaticPaths = async () => {
-  const res = await fetch('https://jsonplaceholder.typicode.com/users');
+  const res = await fetch('https://retoolapi.dev/b3TpSs/contacts/');
   const data = await res.json();
 
   // map data to an array of path objects with params (id)
@@ -21,7 +21,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
   const id = context.params.id;
-  const res = await axios('https://jsonplaceholder.typicode.com/users/' + id);
+  const res = await axios('https://retoolapi.dev/b3TpSs/contacts/' + id);
   const data = res.data;
 
   return {
@@ -41,10 +41,10 @@ const Details = ({ ninja }) => {
 
  return (
     <div>
-      <h1>name : {ninja.name}</h1>
-      <p>email : {ninja.email}</p>
-      <p>website : {ninja.website}</p>
-      <p>address : {ninja.address.city}</p>
+      <h1>name : {ninja.fullname}</h1>
+      <p>email : {ninja.fullname}</p>
+      <p>website : {ninja.fullname}</p>
+      <p>address : {ninja.fullname}</p>
       
     </div>
   );

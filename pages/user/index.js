@@ -4,13 +4,15 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 
 export const getStaticProps = async () => {
-  const res = await axios('http://192.168.11.131:8000/en/api/logo/');
+  const res = await axios('https://retoolapi.dev/b3TpSs/contacts');
   const data = res.data;
 
   return {
-    props: { ninjas: data }
+    props: { ninjas: data },
+    revalidate: 10
   }
 }
+// https://jsonplaceholder.typicode.com/users
 
 const Ninjas = ({ ninjas }) => {
 
@@ -28,13 +30,13 @@ const Ninjas = ({ ninjas }) => {
     <div>
       <h1>list of users</h1>
       <button onClick={() => {handleClick()}}> click me </button>
-      {ninjas && ninjas.map(ninja => (
+      {ninjas.map(ninja => (
 
        
         
         <Link href={'/user/' + ninja.id} key={ninja.id}>
           
-          <img src={ninja.image} key={ninja.id} style={{width:'150px',height:'150px',borderRadius:'4px'}}/>
+            <h3>{ninja.id} - { ninja.fullname }</h3>
           
         </Link>
       ))}
