@@ -3,13 +3,13 @@ import Link from 'next/link';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const res = await axios('https://retoolapi.dev/b3TpSs/contacts');
   const data = res.data;
 
   return {
     props: { ninjas: data },
-    revalidate: 10
+    //revalidate: 10
   }
 }
 // https://jsonplaceholder.typicode.com/users
