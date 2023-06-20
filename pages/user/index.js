@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 
 export const getServerSideProps = async () => {
-  const res = await axios('https://retoolapi.dev/b3TpSs/contacts');
+  const res = await axios('https://jsonplaceholder.typicode.com/users');
   const data = res.data;
 
   return {
@@ -36,7 +36,7 @@ const Ninjas = ({ ninjas }) => {
         
         <Link href={'/user/' + ninja.id} key={ninja.id}>
           
-            <h3>{ninja.id} - { ninja.fullname }</h3>
+            <h3>{ninja.id} - { ninja.name }</h3>
           
         </Link>
       ))}

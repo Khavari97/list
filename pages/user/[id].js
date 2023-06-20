@@ -21,7 +21,7 @@ import { useEffect, useState } from "react";
 
 export const getServerSideProps = async (context) => {
   const id = context.params.id;
-  const res = await axios('https://retoolapi.dev/b3TpSs/contacts/' + id);
+  const res = await axios('https://jsonplaceholder.typicode.com/users/' + id);
   const data = res.data;
 
   return {
@@ -41,10 +41,10 @@ const Details = ({ ninja }) => {
 
  return (
     <div>
-      <h1>name : {ninja.fullname}</h1>
-      <p>email : {ninja.fullname}</p>
-      <p>website : {ninja.fullname}</p>
-      <p>address : {ninja.fullname}</p>
+      <h1>name : {ninja.name}</h1>
+      <p>email : {ninja.email}</p>
+      <p>username : {ninja.username}</p>
+      <p>address : {ninja.address.city}</p>
       
     </div>
   );
